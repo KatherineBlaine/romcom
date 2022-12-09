@@ -27,9 +27,9 @@ window.addEventListener('load', function() {                      //sets EL to w
   formViewButton.addEventListener('click', function(){
     document.querySelector('.home-view').hidden = true;           //this uses the .hidden property to hide the homeview 
     document.querySelector('.form-view').style.display = "block"; //this uses the .style.display properties to show the form view
-    document.querySelector('.home-button').hidden = false;        //we should implement the above here
-    //hide show new cover button with .hidden?
-    //hide save cover button with .hidden?
+    document.querySelector('.home-button').style.display = "block";        
+    document.querySelector('.random-cover-button').hidden = true;
+    document.querySelector('.save-cover-button').hidden = true;
   })
 
   //apply above to when user clicks "save new cover button"
