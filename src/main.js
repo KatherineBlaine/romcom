@@ -4,7 +4,14 @@ var myTitle = document.querySelector(".cover-title");
 var myTagLine1 = document.querySelector(".tagline-1");
 var myTagLine2 = document.querySelector(".tagline-2");
 var myImage = document.querySelector(".cover-image");
-var button = document.querySelector('.random-cover-button');
+var randomCoverButton = document.querySelector('.random-cover-button');
+var formViewButton = document.querySelector('.make-new-button')
+console.log(formViewButton)
+var homeButton = document.querySelector('.home-button') 
+//console.log(homeButton)
+
+var formView = document.querySelector('.view form-view hidden')
+//formView.style.display = 'block'
 
 // We've provided a few variables below
 var savedCovers = [
@@ -16,13 +23,20 @@ var currentCover;
 //on click - create a new random instance of the cover class
 
 
-button.addEventListener('click', function() {
+randomCoverButton.addEventListener('click', function() {
   createNewCover()
   displayNewCover(currentCover)}); 
 window.addEventListener('load', function() {
   createNewCover()
   displayNewCover(currentCover)});
 
+  formViewButton.addEventListener('click', function(){
+    document.querySelector('.home-view').hidden = true;
+    document.querySelector('.home-button').hidden = false;
+    document.querySelector('.form-view').hidden = false;
+    
+  }, false)
+console.log(document.querySelector('.home-view'))
 
 // Create your event handlers and other functions here 👇
 function createNewCover() {
@@ -39,6 +53,19 @@ function displayNewCover(currentCover) {
   myTagLine2.innerText = currentCover.tagline2;
   myImage.src = currentCover.cover;
 }
+
+function changeToFormView(){
+  //show the home button
+  homeButton
+    //change the .innerHTML() to view form - view hidden
+  //show the form view
+    //change the .innerHTML to view form - view hidden
+  //hide the home view
+  //hide save cover button
+  //hide show new random cover button
+}
+
+changeToFormView()
 
 
 // We've provided one function to get you started
