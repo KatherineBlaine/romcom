@@ -1,13 +1,4 @@
 // Create variables targetting the relevant DOM elements here 👇
-var randomDesIndex1 = getRandomIndex(descriptors);
-var randomDesIndex2 = getRandomIndex(descriptors);
-var randomCoverIndex = getRandomIndex(covers);
-var randomTitleIndex = getRandomIndex(titles);
-
-var randomDescriptor1 = descriptors[randomDesIndex1];
-var randomDescriptor2 = descriptors[randomDesIndex2];
-var randomCover = covers[randomCoverIndex];
-var randomTitle = titles[randomTitleIndex];
 
 var myTitle = document.querySelector(".cover-title");
 var myTagLine1 = document.querySelector(".tagline-1");
@@ -24,16 +15,31 @@ var currentCover;
 // Add your event listeners here 👇
 //on click - create a new random instance of the cover class
 
-button.addEventListener('click', createNewCover);        
+
+button.addEventListener('click', function() {
+  createNewCover()
+  displayNewCover(currentCover)}); 
+window.addEventListener('load', function() {
+  createNewCover()
+  displayNewCover(currentCover)});
+
 
 // Create your event handlers and other functions here 👇
 function createNewCover() {
+    var randomDescriptor1 = descriptors[getRandomIndex(descriptors)];
+    var randomDescriptor2 = descriptors[getRandomIndex(descriptors)];
+    var randomCover = covers[getRandomIndex(covers)];
+    var randomTitle = titles[getRandomIndex(titles)];
   currentCover = new Cover(randomCover, randomTitle, randomDescriptor1, randomDescriptor2);
+};
+
+function displayNewCover(currentCover) {
   myTitle.innerText = currentCover.title;
   myTagLine1.innerText = currentCover.tagline1;
   myTagLine2.innerText = currentCover.tagline2;
   myImage.src = currentCover.cover;
-};
+}
+
 
 // We've provided one function to get you started
 function getRandomIndex(array) {
