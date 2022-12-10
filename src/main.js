@@ -57,6 +57,7 @@ saveCoverButton.addEventListener('click', function() {
     saveCurrentCover(currentCover)
   })
 
+window.addEventListener('dblclick', deleteCover)
 
 
 // Create your event handlers and other functions here 👇
@@ -133,6 +134,32 @@ function saveCurrentCover(currentCover) {
 }
 }
 }
+
+function deleteCover() {
+  for( var i = 0; i < savedCovers.length; i++) {
+    var savedCoverId = savedCovers[i].id.toString()
+    console.log(savedCoverId)
+    if (event.target.parentNode.id == savedCoverId) {
+      savedCovers.splice(i, 1)
+      console.log('hello')
+    }
+  }
+  showSavedCovers()
+}
+
+
+// var coverHTML = event.target.outerHTML
+// document.getElementById(event.target.id)
+// console.log(event.target.id.innerHTML)
+// document.querySelector('.mini-cover')
+
+// for (var i = 0; i < savedCovers.length; i++) {
+//   console.log(event.target.className)
+//   if (event.target.className === savedCovers[i].cover) 
+//   savedCovers.splice(i, 1)
+//   console.log(savedCovers[i].cover)
+// }
+
 
 // savedCOvers[i]
 // 
