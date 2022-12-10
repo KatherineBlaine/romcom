@@ -39,7 +39,8 @@ window.addEventListener('load', function() {                      //sets EL to w
 
 homeButton.addEventListener('click', showHomeView);
 formViewButton.addEventListener('click', showFormView);
-viewSavedCoversButton.addEventListener('click', showSavedCovers);
+viewSavedCoversButton.addEventListener('click', function() {
+  showSavedCovers(currentCover)})
 makeMyBookButton.addEventListener('click', preventDefault);
 
 makeMyBookButton.addEventListener('click', function() {
@@ -53,8 +54,8 @@ makeMyBookButton.addEventListener('click', function() {
 })
 
 saveCoverButton.addEventListener('click', function() {
-  saveCurrentCover(currentCover)
-})
+    saveCurrentCover(currentCover)
+  })
 
 
 
@@ -88,7 +89,7 @@ function showHomeView () {
   hide(savedView);
 };
 
-function showSavedCovers() {
+function showSavedCovers(currentCover) {
   show(homeButton);
   show(savedView);
   hide(homeView);
@@ -104,8 +105,8 @@ function showSavedCovers() {
       <h3 class='tagline'>A tale of <span class='tagline-1'>${savedCovers[i].tagline1}</span> and <span class='tagline-2'>${savedCovers[i].tagline2}</span></h3>
       <img class='price-tag' src='./assets/price.png'>
       <img class='overlay' src='./assets/overlay.png'>`
-  }
-};
+    }
+}
 
 function showFormView() { 
   show(formView);
@@ -127,11 +128,14 @@ function storeInput(array, input) {
 
 function saveCurrentCover(currentCover) {
   for (var i = 0; i < savedCovers.length; i++) {
-    if (currentCover.id !== savedCovers[i].id) {
-      savedCovers.push(currentCover)
+    if (!savedCovers.includes(currentCover)) {
+    savedCovers.push(currentCover)
     }
   }
 }
+
+// savedCOvers[i]
+// 
 
 // storeInput(array from data page that we want to store it in, the value we want to be stored - querySelector().value)
 
