@@ -10,10 +10,16 @@ var formViewButton = document.querySelector('.make-new-button');
 var homeButton = document.querySelector('.home-button');
 var viewSavedCoversButton = document.querySelector('.view-saved-button');
 var saveCoverButton = document.querySelector('.save-cover-button');
+var makeMyBookButton = document.querySelector('.create-new-book-button')
 
 var homeView = document.querySelector('.home-view');
 var formView = document.querySelector('.form-view');
 var savedView = document.querySelector('.saved-view');
+
+var userCover = document.querySelector('.user-cover')
+var userTitle = document.querySelector('.user-title')
+var userDescriptor1 = document.querySelector('.user-desc1')
+var userDescriptor2 = document.querySelector('.user-desc2')
 
 // We've provided a few variables below
 var savedCovers = [
@@ -34,6 +40,17 @@ window.addEventListener('load', function() {                      //sets EL to w
 homeButton.addEventListener('click', showHomeView);
 formViewButton.addEventListener('click', showFormView);
 viewSavedCoversButton.addEventListener('click', showSavedCovers);
+makeMyBookButton.addEventListener('click', preventDefault)
+
+makeMyBookButton.addEventListener('click', function() {
+  storeInput(covers, userCover.value);
+  storeInput(titles, userTitle.value);
+  storeInput(descriptors, userDescriptor1.value);
+  storeInput(descriptors, userDescriptor2.value);
+})
+
+// console.log(userCover)
+
 
 // Create your event handlers and other functions here 👇
 function createNewCover() {
@@ -89,6 +106,19 @@ function showFormView() {
   hide(savedView);
 };
 
+function preventDefault(event) {
+  event.preventDefault();
+};
+
+function storeInput(array, input) {
+  array.push(input)
+  return array
+};
+
+// storeInput(array from data page that we want to store it in, the value we want to be stored - querySelector().value)
+
+
+
 // We've provided one function to get you started
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -102,3 +132,26 @@ function hide(elements) {
   elements.classList.add("hidden");
 };
 
+// iteration 2:
+// Event listener for make your own cover 
+// - return the input value
+// - use event.preventDefault so it doesnt just reload the page
+//
+// create a new class with the arguments coverName, titleName, tagline1, tagline2
+
+// locate in HTML where each of these input boxes is
+// an event listener that waits for the user to type value into box
+// when that happens, the event handler would return the input value
+// event listener just on make my book that returns each input
+
+// input:
+// document.querySelector('class').value = input enetered in that particular class
+
+// save inputs into data arrays for each form box
+// store the inputs into a new cover() instance
+// go back to the home page (hide form view) 
+// displays created cover on main page - display cover function
+// - store in currentCover variable
+// - reuse display cover function
+
+// add event.preventDefault() in the function the event listener invokes
