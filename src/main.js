@@ -9,9 +9,9 @@ var randomCoverButton = document.querySelector('.random-cover-button');
 var formViewButton = document.querySelector('.make-new-button');
 var homeButton = document.querySelector('.home-button');
 var viewSavedCoversButton = document.querySelector('.view-saved-button');
-var saveCoversButton = document.querySelector('.save-cover-button');
+var saveCoverButton = document.querySelector('.save-cover-button');
 
-var homeview = document.querySelector('.home-view');
+var homeView = document.querySelector('.home-view');
 var formView = document.querySelector('.form-view');
 var savedView = document.querySelector('.saved-view');
 
@@ -31,35 +31,9 @@ window.addEventListener('load', function() {                      //sets EL to w
   createNewCover()
   displayNewCover(currentCover)});
 
-homeButton.addEventListener('click', )
-
-formViewButton.addEventListener('click', )
-
-var savedView = document.querySelector('.saved-view')
-
-savedCoversViewButton.addEventListener('click', )
-
-
-
-
-
-// function showSavedCovers() {
-//   document.querySelector('.saved-cover-section').classList.add('saved-view', 'saved-covers-section')
-//   document.querySelector('.cover-image2').classList.add('mini-cover') 
-//   //'mini-cover' > 'cover-title', 'mini-cover' > 'cover-title::first-letter', 'mini-cover' > 'tagline')
-// }
-
-
-
-// savedView.innerText = savedCovers[0].title.style.add('cover-title')
-
-  // for (var i = 0; i < savedCovers.length; i ++) {
-  //   savedView.innerText = savedCovers[i]
-  // }
-//  savedView.classList.add('saved-covers-section')
-// document.querySelector('.saved-view').style.add(savedCovers)
-console.log(savedView);
-
+homeButton.addEventListener('click', showHomeView);
+formViewButton.addEventListener('click', showFormView);
+viewSavedCoversButton.addEventListener('click', showSavedCovers);
 
 // Create your event handlers and other functions here 👇
 function createNewCover() {
@@ -70,45 +44,50 @@ function createNewCover() {
   currentCover = new Cover(randomCover, randomTitle, randomDescriptor1, randomDescriptor2);
 };
 
-function showHomeView () {                  
-  document.querySelector('.home-view').classList.remove(".hidden")          
-  document.querySelector('.form-view').classList.remove(".hidden") 
-  // document.querySelector('.home-button').hidden = true;        
-  document.querySelector('.random-cover-button').style.display = "block";
-  document.querySelector('.save-cover-button').classList.add(".hidden")
-}
-
-function showSavedCovers() {
-  document.querySelector('.home-view').hidden = true; 
-  document.querySelector('.random-cover-button').hidden = true;
-  document.querySelector('.save-cover-button').hidden = true;
-  document.querySelector('.home-button').style.display = "block";
-  document.querySelector('.saved-view').style.display = "block";
-  document.querySelector('.form-view').hidden = true;
-//   savedView.innerHTML = 
-// `<section class='main-cover'>
-// <img class='cover-image' src= ${savedCovers[0].cover}>
-// <h2 class='cover-title'> ${savedCovers[0].title}</h2>
-// <h3 class='tagline'>A tale of <span class='tagline-1'>${savedCovers[0].tagline1}</span> and <span class='tagline-2'>${savedCovers[0].tagline2}</span></h3>
-// <img class='price-tag' src='./assets/price.png'>
-// <img class='overlay' src='./assets/overlay.png'>
-// </section>`
-}
-
-function showFormView() {
-  document.querySelector('.home-view').hidden = true;           //this uses the .hidden property to hide the homeview 
-  document.querySelector('.form-view').style.display = "block"; //this uses the .style.display properties to show the form view
-  document.querySelector('.home-button').style.display = "block";        
-  document.querySelector('.random-cover-button').hidden = true;
-  document.querySelector('.save-cover-button').hidden = true;
-}
-
 function displayNewCover(currentCover) {                            //sets default main-cover html info to our randomly generated cover
   defaultTitle.innerText = currentCover.title;
   defaultTagLine1.innerText = currentCover.tagline1;
   defaultTagLine2.innerText = currentCover.tagline2;
   defaultImage.src = currentCover.cover;
-}
+};
+
+function showHomeView () {                  
+  show(homeView);
+  show(randomCoverButton);
+  show(saveCoverButton);
+  hide(formView);
+  hide(homeButton);  
+  hide(savedView);
+};
+
+function showSavedCovers() {
+  show(homeButton);
+  show(savedView);
+  hide(homeView);
+  hide(randomCoverButton);
+  hide(saveCoverButton);
+  hide(formView);
+  savedView.innerHTML = '';                         //
+
+  for (var i = 0; i < savedCovers.length; i++) {
+    savedView.innerHTML =                         //line 68: div class sets the mini cover class to this section, adding id helps to identify the saved cover later
+     `<div class='mini-cover' id=${savedCovers[i].id}>           
+      <img class='cover-image' src= ${savedCovers[i].cover}>
+      <h2 class='cover-title'> ${savedCovers[i].title}</h2>
+      <h3 class='tagline'>A tale of <span class='tagline-1'>${savedCovers[i].tagline1}</span> and <span class='tagline-2'>${savedCovers[i].tagline2}</span></h3>
+      <img class='price-tag' src='./assets/price.png'>
+      <img class='overlay' src='./assets/overlay.png'>`
+  }
+};
+
+function showFormView() { 
+  show(formView);
+  show(homeButton); 
+  hide(homeView);       
+  hide(randomCoverButton);
+  hide(saveCoverButton);
+  hide(savedView);
+};
 
 // We've provided one function to get you started
 function getRandomIndex(array) {
@@ -117,9 +96,9 @@ function getRandomIndex(array) {
 
 function show(elements) {
   elements.classList.remove("hidden");
-}
+};
 
 function hide(elements) {
   elements.classList.add("hidden");
-}
+};
 
