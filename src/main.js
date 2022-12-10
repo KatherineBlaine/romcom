@@ -16,10 +16,10 @@ var homeView = document.querySelector('.home-view');
 var formView = document.querySelector('.form-view');
 var savedView = document.querySelector('.saved-view');
 
-var userCover = document.querySelector('.user-cover')
-var userTitle = document.querySelector('.user-title')
-var userDescriptor1 = document.querySelector('.user-desc1')
-var userDescriptor2 = document.querySelector('.user-desc2')
+var userCover = document.querySelector('.user-cover');
+var userTitle = document.querySelector('.user-title');
+var userDescriptor1 = document.querySelector('.user-desc1');
+var userDescriptor2 = document.querySelector('.user-desc2');
 
 // We've provided a few variables below
 var savedCovers = [
@@ -47,6 +47,9 @@ makeMyBookButton.addEventListener('click', function() {
   storeInput(titles, userTitle.value);
   storeInput(descriptors, userDescriptor1.value);
   storeInput(descriptors, userDescriptor2.value);
+  createUserCover();
+  showHomeView();
+  displayNewCover(currentCover);
 })
 
 // console.log(userCover)
@@ -60,6 +63,11 @@ function createNewCover() {
     var randomTitle = titles[getRandomIndex(titles)];
   currentCover = new Cover(randomCover, randomTitle, randomDescriptor1, randomDescriptor2);
 };
+
+function createUserCover() {
+  currentCover = new Cover(userCover.value, userTitle.value, userDescriptor1.value, userDescriptor2.value);
+}
+
 
 function displayNewCover(currentCover) {                            //sets default main-cover html info to our randomly generated cover
   defaultTitle.innerText = currentCover.title;
@@ -135,19 +143,8 @@ function hide(elements) {
 // iteration 2:
 // Event listener for make your own cover 
 // - return the input value
-// - use event.preventDefault so it doesnt just reload the page
-//
 // create a new class with the arguments coverName, titleName, tagline1, tagline2
 
-// locate in HTML where each of these input boxes is
-// an event listener that waits for the user to type value into box
-// when that happens, the event handler would return the input value
-// event listener just on make my book that returns each input
-
-// input:
-// document.querySelector('class').value = input enetered in that particular class
-
-// save inputs into data arrays for each form box
 // store the inputs into a new cover() instance
 // go back to the home page (hide form view) 
 // displays created cover on main page - display cover function
