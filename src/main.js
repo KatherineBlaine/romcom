@@ -130,8 +130,8 @@ function saveCurrentCover(currentCover) {
   for (var i = 0; i < savedCovers.length; i++) {
     if (!savedCovers.includes(currentCover)) {
     savedCovers.push(currentCover)
-    }
-  }
+}
+}
 }
 
 // savedCOvers[i]
