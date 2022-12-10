@@ -16,6 +16,11 @@ var homeView = document.querySelector('.home-view');
 var formView = document.querySelector('.form-view');
 var savedView = document.querySelector('.saved-view');
 
+var userCover = document.querySelector('.user-cover')
+var userTitle = document.querySelector('.user-title')
+var userDescriptor1 = document.querySelector('.user-desc1')
+var userDescriptor2 = document.querySelector('.user-desc2')
+
 // We've provided a few variables below
 var savedCovers = [
   new Cover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows"),
@@ -36,6 +41,19 @@ homeButton.addEventListener('click', showHomeView);
 formViewButton.addEventListener('click', showFormView);
 viewSavedCoversButton.addEventListener('click', showSavedCovers);
 makeMyBookButton.addEventListener('click', preventDefault)
+
+makeMyBookButton.addEventListener('click', function() {
+  var userCover = document.querySelector('.user-cover').value
+  var userTitle = document.querySelector('.user-title').value
+  var userDescriptor1 = document.querySelector('.user-desc1').value
+  var userDescriptor2 = document.querySelector('.user-desc2').value
+  storeInput(covers, userCover);
+  storeInput(titles, userTitle);
+  storeInput(descriptors, userDescriptor1);
+  storeInput(descriptors, userDescriptor2);
+})
+
+// console.log(userCover)
 
 
 // Create your event handlers and other functions here 👇
@@ -95,6 +113,13 @@ function showFormView() {
 function preventDefault(event) {
   event.preventDefault();
 };
+
+function storeInput(array, input) {
+  array.push(input)
+  return array
+};
+
+// storeInput(array from data page that we want to store it in, the value we want to be stored - querySelector().value)
 
 
 
