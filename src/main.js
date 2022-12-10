@@ -39,8 +39,9 @@ window.addEventListener('load', function() {                      //sets EL to w
 
 homeButton.addEventListener('click', showHomeView);
 formViewButton.addEventListener('click', showFormView);
-viewSavedCoversButton.addEventListener('click', showSavedCovers);
-makeMyBookButton.addEventListener('click', preventDefault)
+viewSavedCoversButton.addEventListener('click', function() {
+  showSavedCovers(currentCover)})
+makeMyBookButton.addEventListener('click', preventDefault);
 
 makeMyBookButton.addEventListener('click', function() {
   storeInput(covers, userCover.value);
@@ -52,7 +53,11 @@ makeMyBookButton.addEventListener('click', function() {
   displayNewCover(currentCover);
 })
 
-// console.log(userCover)
+saveCoverButton.addEventListener('click', function() {
+    saveCurrentCover(currentCover)
+  })
+
+savedView.addEventListener('dblclick', deleteCover)
 
 
 // Create your event handlers and other functions here 👇
@@ -85,7 +90,7 @@ function showHomeView () {
   hide(savedView);
 };
 
-function showSavedCovers() {
+function showSavedCovers(currentCover) {
   show(homeButton);
   show(savedView);
   hide(homeView);
@@ -93,17 +98,16 @@ function showSavedCovers() {
   hide(saveCoverButton);
   hide(formView);
   savedView.innerHTML = '';                         //
-
   for (var i = 0; i < savedCovers.length; i++) {
-    savedView.innerHTML =                         //line 68: div class sets the mini cover class to this section, adding id helps to identify the saved cover later
+    savedView.innerHTML +=                         //line 68: div class sets the mini cover class to this section, adding id helps to identify the saved cover later
      `<div class='mini-cover' id=${savedCovers[i].id}>           
       <img class='cover-image' src= ${savedCovers[i].cover}>
       <h2 class='cover-title'> ${savedCovers[i].title}</h2>
       <h3 class='tagline'>A tale of <span class='tagline-1'>${savedCovers[i].tagline1}</span> and <span class='tagline-2'>${savedCovers[i].tagline2}</span></h3>
       <img class='price-tag' src='./assets/price.png'>
       <img class='overlay' src='./assets/overlay.png'>`
-  }
-};
+    }
+}
 
 function showFormView() { 
   show(formView);
@@ -123,6 +127,41 @@ function storeInput(array, input) {
   return array
 };
 
+function saveCurrentCover(currentCover) {
+  for (var i = 0; i < savedCovers.length; i++) {
+    if (!savedCovers.includes(currentCover)) {
+    savedCovers.push(currentCover)
+}
+}
+}
+
+function deleteCover() {
+  for( var i = 0; i < savedCovers.length; i++) {
+    var savedCoverId = savedCovers[i].id.toString()
+    if (event.target.parentNode.id === savedCoverId) {
+      savedCovers.splice(i, 1)
+    }
+  }
+  showSavedCovers()
+}
+
+
+// var coverHTML = event.target.outerHTML
+// document.getElementById(event.target.id)
+// console.log(event.target.id.innerHTML)
+// document.querySelector('.mini-cover')
+
+// for (var i = 0; i < savedCovers.length; i++) {
+//   console.log(event.target.className)
+//   if (event.target.className === savedCovers[i].cover) 
+//   savedCovers.splice(i, 1)
+//   console.log(savedCovers[i].cover)
+// }
+
+
+// savedCOvers[i]
+// 
+
 // storeInput(array from data page that we want to store it in, the value we want to be stored - querySelector().value)
 
 
@@ -140,15 +179,13 @@ function hide(elements) {
   elements.classList.add("hidden");
 };
 
-// iteration 2:
-// Event listener for make your own cover 
-// - return the input value
-// create a new class with the arguments coverName, titleName, tagline1, tagline2
+// iteration 3:
+// Event listener for the save cover button that will:
+// push currentCover to the savedCovers array
 
-// store the inputs into a new cover() instance
-// go back to the home page (hide form view) 
-// displays created cover on main page - display cover function
-// - store in currentCover variable
-// - reuse display cover function
+// create an if statements that will not push the currentCover if the array already
+// holds that same cover.
+// currentCover id = any of the ids saved in the array
+// if the savedCover array[i].includes(array[i].id) === false -> push to array
 
-// add event.preventDefault() in the function the event listener invokes
+// Make sure savedCovers page shows the covers than have been saved.
