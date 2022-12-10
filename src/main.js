@@ -57,7 +57,7 @@ saveCoverButton.addEventListener('click', function() {
     saveCurrentCover(currentCover)
   })
 
-window.addEventListener('dblclick', deleteCover)
+savedView.addEventListener('dblclick', deleteCover)
 
 
 // Create your event handlers and other functions here 👇
@@ -138,10 +138,8 @@ function saveCurrentCover(currentCover) {
 function deleteCover() {
   for( var i = 0; i < savedCovers.length; i++) {
     var savedCoverId = savedCovers[i].id.toString()
-    console.log(savedCoverId)
-    if (event.target.parentNode.id == savedCoverId) {
+    if (event.target.parentNode.id === savedCoverId) {
       savedCovers.splice(i, 1)
-      console.log('hello')
     }
   }
   showSavedCovers()
