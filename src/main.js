@@ -43,14 +43,10 @@ viewSavedCoversButton.addEventListener('click', showSavedCovers);
 makeMyBookButton.addEventListener('click', preventDefault)
 
 makeMyBookButton.addEventListener('click', function() {
-  var userCover = document.querySelector('.user-cover').value
-  var userTitle = document.querySelector('.user-title').value
-  var userDescriptor1 = document.querySelector('.user-desc1').value
-  var userDescriptor2 = document.querySelector('.user-desc2').value
-  storeInput(covers, userCover);
-  storeInput(titles, userTitle);
-  storeInput(descriptors, userDescriptor1);
-  storeInput(descriptors, userDescriptor2);
+  storeInput(covers, userCover.value);
+  storeInput(titles, userTitle.value);
+  storeInput(descriptors, userDescriptor1.value);
+  storeInput(descriptors, userDescriptor2.value);
 })
 
 // console.log(userCover)
